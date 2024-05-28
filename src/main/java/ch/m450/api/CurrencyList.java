@@ -169,9 +169,17 @@ public class CurrencyList {
             System.out.println(String.format("%-10s %-20s %-30s", "Currency Code", "Currency Name", "Country"));
             System.out.println("--------------------------------------------------------------------------------");
 
-        // Iterate through the currency data and print each row
             for (String[] currency : currencyData) {
             System.out.println(String.format("%-10s %-20s %-30s", currency[0], currency[1], currency[2]));
         }
+    }
+
+    public static boolean isValidCurrency(String currencyCode) {
+        for (String[] currency : currencyData) {
+            if (currency[0].equalsIgnoreCase(currencyCode)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
