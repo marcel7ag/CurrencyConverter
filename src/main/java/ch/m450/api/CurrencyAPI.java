@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 public class CurrencyAPI {
-    private static String API_KEY = "f48f970f79496abc2c490288";
-    private static String API_BASE_URL = "https://v6.exchangerate-api.com/v6/";
+    private static String API_KEY;
+    private static String API_BASE_URL;
 
     public CurrencyAPI() {
     }
