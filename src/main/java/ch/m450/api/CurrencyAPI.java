@@ -79,5 +79,7 @@ public class CurrencyAPI {
             return kursObject.getBigDecimal(zielCurrency.toUpperCase());
         }
     }
+
+
 }
 
