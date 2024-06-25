@@ -6,7 +6,7 @@ public class KursCurrencyConverter extends CurrencyConverter {
     public KursCurrencyConverter(String basisCurrency, String zielCurrency, BigDecimal quantitaet) {
         super(
                 basisCurrency, zielCurrency, quantitaet,
-                "a1a84b0482ebd77c44c258ad", "https://v6.exchangerate-api.com/v6/"
+                "d8d4b7ecb13e73dd5f554717", "https://v6.exchangerate-api.com/v6/"
         );
     }
 

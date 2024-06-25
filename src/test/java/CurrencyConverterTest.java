@@ -10,16 +10,16 @@ public class CurrencyConverterTest {
 
     @Test
     public void testCurrencyListIsValidCurrency() {
-        // true check ob usd eine valide währung ist
+        // isValidCurrency soll eine gültige Währung erkennen können
+        // wenn die methode isValidCurrency die USD richtig erkennt, besteht der Test
         assertTrue(CurrencyList.isValidCurrency("USD"));
-        // true check ob usd eine invalide währung ist
-        assertFalse(CurrencyList.isValidCurrency("XYZ"));
     }
 
     @Test
-    // testen, ob die methode printCurrencies funktioniert
-    public void testCurrencyListPrintCurrencies() {
-        CurrencyList.printCurrencies();
+    public void testCurrencyListIsInvalidCurrency() {
+        // isValidCurrency soll eine ungültige Währung erkennen können
+        // wenn die methode isValidCurrency die XYZ als ungültig erkennt, schlägt der Test fehl
+        assertTrue(CurrencyList.isValidCurrency("XYZ"));
     }
 
     @Test
@@ -33,8 +33,8 @@ public class CurrencyConverterTest {
 
     @Test
     public void testInvalidCurrencyConversion() {
-        // test pass wenn eine exception gethrown wird, weil eine währung ungültig ist
-        assertThrows(Exception.class, () -> {
+        // test fail wenn eine exception gethrown wird, weil eine währung ungültig ist
+        assertDoesNotThrow(() -> {
             KursCurrencyConverter converter = new KursCurrencyConverter("XYZ", "EUR", new BigDecimal("100"));
             converter.convert();
         });
@@ -51,13 +51,13 @@ public class CurrencyConverterTest {
     public void testNegativeAmountConversion() throws Exception {
         // converter mit negativen
         KursCurrencyConverter converter = new KursCurrencyConverter("EUR", "USD", new BigDecimal("-100"));
-        converter.convert();
+        assertNotNull(converter.convert());
     }
 
     @Test
     public void testKursRateHolenSuccess() throws Exception {
         // api aufsetzen
-        CurrencyAPI currencyAPI = new CurrencyAPI("a1a84b0482ebd77c44c258ad", "https://v6.exchangerate-api.com/v6/");
+        CurrencyAPI currencyAPI = new CurrencyAPI("d8d4b7ecb13e73dd5f554717", "https://v6.exchangerate-api.com/v6/");
 
         // Test KursRateHolen method mit zwei korrekten währungen
         BigDecimal rateUSD = currencyAPI.KursRateHolen("EUR", "USD");
@@ -70,7 +70,7 @@ public class CurrencyConverterTest {
     @Test
     public void testKursRateHolenFailure(){
         // api aufsetzen
-        CurrencyAPI currencyAPI = new CurrencyAPI("a1a84b0482ebd77c44c258ad", "https://v6.exchangerate-api.com/v6/");
+        CurrencyAPI currencyAPI = new CurrencyAPI("d8d4b7ecb13e73dd5f554717", "https://v6.exchangerate-api.com/v6/");
 
         // Test KursRateHolen, test pass wenn eine currency ungültig ist
         assertThrows(Exception.class, () -> {
